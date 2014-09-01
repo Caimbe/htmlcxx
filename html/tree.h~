@@ -50,7 +50,7 @@
 #include <stdexcept>
 #include <iterator>
 #include <set>
-#include <stddef.h>
+#include <sdtdef.h>
 
 // HP-style construct/destroy have gone from the standard,
 // so here is a copy.
