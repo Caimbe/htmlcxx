@@ -15,18 +15,7 @@ namespace htmlcxx {
 				~Node() {}
 
                 inline void text(const std::string& text) { this->mText = text; }
-                inline const std::string& text()
-                {
-                    if(isTag() && !mTagName.empty() ){
-                        mText = '<'+mTagName+' ';
-                        for(std::map<std::string, std::string>::iterator par=mAttributes.begin(); par!=mAttributes.end(); par++){
-                            if( ! par->first.empty() )
-                                mText+=par->first + "=\"" + par->second +"\" ";
-                        }
-                        mText += ">";
-                    }
-                    return mText;
-                }
+                inline const std::string& text(){return mText;}
 
 				inline void closingText(const std::string &text) { this->mClosingText = text; }
 				inline const std::string& closingText() const { return mClosingText; }
