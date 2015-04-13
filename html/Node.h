@@ -14,8 +14,19 @@ namespace htmlcxx {
 				//Node(const Node &rhs); //uses default
 				~Node() {}
 
-				inline void text(const std::string& text) { this->mText = text; }
-				inline const std::string& text() const { return this->mText; }
+                inline void text(const std::string& text) { this->mText = text; }
+                inline const std::string& text()
+                {
+                    if(isTag() && !mTagName.empty() ){
+                        mText = '<'+mTagName+' ';
+                        for(std::map<std::string, std::string>::iterator par=mAttributes.begin(); par!=mAttributes.end(); par++){
+                            if( ! par->first.empty() )
+                                mText+=par->first + "=\"" + par->second +"\" ";
+                        }
+                        mText += ">";
+                    }
+                    return mText;
+                }
 
 				inline void closingText(const std::string &text) { this->mClosingText = text; }
 				inline const std::string& closingText() const { return mClosingText; }
@@ -34,7 +45,8 @@ namespace htmlcxx {
 
 				bool isComment() const { return this->mComment; }
 				void isComment(bool comment){ this->mComment = comment; }
-
+				
+                void setAttrute(const std::string& attr, const std::string& text);
 				std::pair<bool, std::string> attribute(const std::string &attr) const
 				{ 
 					std::map<std::string, std::string>::const_iterator i = this->mAttributes.find(attr);

@@ -97,6 +97,15 @@ void Node::parseAttributes()
 	}
 }
 
+void Node::setAttrute(const string &attr, const string &text)
+{
+    std::map<std::string, std::string>::iterator it = mAttributes.find(attr);
+    if(it != mAttributes.end())
+        it->second.assign(text);
+    else
+        mAttributes.insert(make_pair(attr, text));
+}
+
 bool Node::operator==(const Node &n) const 
 {
 	if (!isTag() || !n.isTag()) return false;
@@ -104,8 +113,9 @@ bool Node::operator==(const Node &n) const
 }
 
 Node::operator string() const {
-	if (isTag()) return this->tagName();
-	return this->text();
+    if (isTag())
+        return this->tagName();
+    return mText;
 }
 
 ostream &Node::operator<<(ostream &stream) const {
