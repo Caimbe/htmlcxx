@@ -74,6 +74,7 @@ void Page::insertContentId(string id, const string &html)
     insertContentId(id, view);
 }
 
+
 treeNode& Page::getDom()
 {
     return const_cast<treeNode&>((const treeNode&)html.getTree());
@@ -93,7 +94,6 @@ treeNode::iterator Page::getTagById(string id)
 void Page::write(std::ostream& out, const treeNode& dom)
 {
     treeNode::iterator it = dom.begin();
-    it->parseAttributes();
 
     const string& text = it->text();
     out << text;
@@ -165,7 +165,11 @@ void Page::setText(treeNode::iterator node, const string &text)
         }
 }
 
-    }
+
+
+
+}
+
 } // end namespace
 
 std::ostream& operator<<(std::ostream &stream, htmlcxx::HTML::Page &view)

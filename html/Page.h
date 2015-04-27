@@ -28,6 +28,12 @@ public:
     void insertContentId(std::string id, Page& view);
     void insertContentId(std::string id, const std::ifstream& file);
     void insertContentId(std::string id, const std::string& html);
+    template<class type> void insertContentId(std::string id, const type& html)
+    {
+        std::string str = to_string(html);
+        insertContentId(id, str);
+    }
+
     void setContentId(std::string id, const std::string& html);
     void setContentId(std::string id, const std::ifstream& file);
     void write(std::ostream& out, const treeNode& dom);
