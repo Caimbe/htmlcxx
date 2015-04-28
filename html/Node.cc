@@ -104,6 +104,11 @@ void Node::setAttrute(const string &attr, const string &text)
         it->second.assign(text);
     else
         mAttributes.insert(make_pair(attr, text));
+
+    mText = '<'+tagName();
+    for(const auto& attrib: mAttributes)
+        mText += ' ' + attrib.first + "='" + attrib.second + '\'';
+    mText+=mClosingText.length()?'>'+mClosingText:"/>";
 }
 
 bool Node::operator==(const Node &n) const 
