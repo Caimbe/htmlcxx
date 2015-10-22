@@ -35,7 +35,7 @@ namespace htmlcxx {
 				bool isComment() const { return this->mComment; }
 				void isComment(bool comment){ this->mComment = comment; }
 				
-                void setAttrute(const std::string& attr, const std::string& text);
+                void setAttribute(const std::string& attr, const std::string& text);
 				std::pair<bool, std::string> attribute(const std::string &attr) const
 				{ 
 					std::map<std::string, std::string>::const_iterator i = this->mAttributes.find(attr);

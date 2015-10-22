@@ -97,7 +97,7 @@ void Node::parseAttributes()
 	}
 }
 
-void Node::setAttrute(const string &attr, const string &text)
+void Node::setAttribute(const string &attr, const string &text)
 {
     std::map<std::string, std::string>::iterator it = mAttributes.find(attr);
     if(it != mAttributes.end())
